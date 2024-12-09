@@ -13,12 +13,6 @@ class Rect:
         SCREEN_WIDTH = pygame.display.Info().current_w
         self.rect = pygame.Rect(self.position[0], self.position[1], 0.9*(SCREEN_WIDTH/30), 0.9*(SCREEN_WIDTH/30))
         pygame.draw.rect(screen, self.color, self.rect)
-    
-    def canCollide(self, other):
-        if self.position[0] == other.position[0]:
-            print("collided")
-        if self.position[1] == other.position[1]:
-            print("collided")
 
 class Grid(Rect):
     def __init__(self, x, y):
@@ -28,4 +22,8 @@ class Grid(Rect):
                 self.grid.append(Rect(i, j))
     
     def canCollide(self, other):
-        return super().canCollide(other)
+        for i in self.grid:
+            if i.position[0] == other.position[0]:
+                self.grid.remove(i)
+            if i.position[1] == other.position[1]:
+                self.grid.remove(i)

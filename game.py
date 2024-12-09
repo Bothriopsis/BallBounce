@@ -14,30 +14,32 @@ class Game:
 
     bar = movingBar()
     ball = bounciBall()
-    grid = Grid(screen)
+    grid = Grid()
     background = Background()
     def __init__(self):
         self.game = True
-    
+
     def run(self):
         while self.game:
-            if not self.background.collide(self.ball):
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.game = False
-                keys = pygame.key.get_pressed()
-                if keys[pygame.K_LEFT] or keys[pygame.K_a]:
-                    self.bar.move(-10)
-                if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
-                    self.bar.move(10)
-                self.ball.move()
-                self.background.draw(self.screen)
-                self.bar.draw(self.screen)
-                self.ball.draw(self.screen)
-                self.ball.collide(self.bar)
-                for i in Rect.all_grids():
-                    pygame.draw.rect(self.screen, "grey", i)
-                pygame.display.flip()
-                self.clock.tick(165)
-            
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.game = False
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+                self.bar.move(-10)
+            if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+                self.bar.move(10)
+            self.ball.move()
+            self.background.draw(self.screen)
+            self.bar.draw(self.screen)
+            self.ball.draw(self.screen)
+            self.ball.collide(self.bar)
+            for i in Rect.all_grids():
+                if i.colliderect(self.ball.rect):
+                    Rect.all_grids().remove(i)
+                pygame.draw.rect(self.screen, "grey", i)
+            if self.background.collide(self.ball):
+                self.background.dead()
+            self.clock.tick(165)
+            pygame.display.flip()
         pygame.quit()

@@ -24,7 +24,7 @@ class Rect:
         return Rect.all
 
 class Grid:
-    def __init__(self, screen):
+    def __init__(self):
         for i in range(20):
             for j in range(10):
                 Rect(i, j).make()

@@ -15,17 +15,16 @@ class Rect:
         self.rect = pygame.Rect(self.position[0], self.position[1], 0.9*(SCREEN_WIDTH/30), 0.9*(SCREEN_WIDTH/30))
         Rect._all.append(self.rect)
         pygame.draw.rect(screen, self.color, self.rect)
+
     @classmethod
-    def grid(cls):
+    def all_grids(cls):
         return Rect._all
 
 class Grid(Rect):
-    __grid = []
     def __init__(self, screen):
-        self.grid = []
         for i in range(20):
             for j in range(10):
-                self.grid.append(super().__init__(i,j))    
+                super().__init__(i, j) 
     
     def canCollide(self, other):
         for i in self.grid:

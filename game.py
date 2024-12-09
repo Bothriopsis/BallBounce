@@ -34,7 +34,7 @@ class Game:
                 self.bar.draw(self.screen)
                 self.ball.draw(self.screen)
                 self.ball.collide(self.bar)
-                self.grid.make(self.screen)
+                print(Grid.all_grids())
                 pygame.display.flip()
                 self.clock.tick(1)
             

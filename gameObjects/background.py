@@ -6,6 +6,11 @@ class Background:
     
     def draw(self, screen):
         screen.fill(self.color)
+
+    def collide(self, player):
+        SCREEN_HEIGHT = pygame.display.get_surface().get_height()
+        if player.rect.y >= SCREEN_HEIGHT:
+            return True
     
     def dead(self):
         self.color = "red"

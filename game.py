@@ -36,4 +36,6 @@ class Game:
             self.grid.draw(self.screen)
             pygame.display.flip()
             self.clock.tick(60)
+            if self.background.collide(self.ball):
+                self.game = False
         pygame.quit()

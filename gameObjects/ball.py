@@ -9,7 +9,6 @@ class bounciBall:
         self.color = "purple"
         self.dx = random.randint(50,100)/50 # Random velocity on x-Achsis
         self.dy = random.randint(-100,-50)/50 # Rnadom velocitiy on y-Achsis in positiv Direction towards the grid
-        self.dead = False
 
     def draw(self, screen):
         SCREEN_WIDTH = pygame.display.Info().current_w
@@ -27,6 +26,4 @@ class bounciBall:
             self.dx = -self.dx
         if self.position[1] <= 0:
             self.dy = -self.dy
-        if self.position[1] > SCREEN_HEIGHT:
-            self.dead = True
 

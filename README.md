@@ -4,8 +4,7 @@ Welcome to **Ballbounce**! This is a small, basic game where you should destroy 
 
 ## 🚀 Features
 
-- Simple yet engaging gameplay
-- Easy to learn, hard to master
+- Simple gameplay
 - Classic Pong-like mechanics
 
 ## 📸 Screenshots

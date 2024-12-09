@@ -2,6 +2,7 @@ import pygame
 from gameObjects.moving import movingBar
 from gameObjects.ball import bounciBall
 from gameObjects.grid import Grid
+from gameObjects.background import Background
 
 class Game:
     pygame.init()
@@ -13,6 +14,7 @@ class Game:
     bar = movingBar()
     ball = bounciBall()
     grid = Grid()
+    background = Background()
     def __init__(self):
         self.game = True
     
@@ -27,7 +29,7 @@ class Game:
             if keys[pygame.K_RIGHT]:
                 self.bar.move(10)
             self.ball.move()
-            self.screen.fill((0,0,0))
+            self.background.draw(self.screen)
             self.bar.draw(self.screen)
             self.ball.draw(self.screen)
             self.grid.draw(self.screen)

@@ -20,6 +20,8 @@ class Game:
         self.game = True
 
     def run(self):
+        self.won = False
+        self.loose = False
         while self.game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -38,8 +40,23 @@ class Game:
                 if i.colliderect(self.ball.rect):
                     Rect.all_grids().remove(i)
                 pygame.draw.rect(self.screen, "grey", i)
-            if self.background.collide(self.ball):
+            if len(Rect.all_grids()) == 0 and self.loose == False:
+                self.won = True
+            if self.won == True:
+                SCREEN_WIDTH = pygame.display.get_surface().get_width()
+                SCREEN_HEIGHT = pygame.display.get_surface().get_height()
+                self.background.winner()
+                self.screen.blit(self.background.text, (SCREEN_WIDTH/2-self.background.textRect.width/2, SCREEN_HEIGHT/2-self.background.textRect.height/2))
+                self.bar.color = "beige"
+            if self.background.collide(self.ball) and self.won == False:
+                self.loose = True
+                SCREEN_WIDTH = pygame.display.get_surface().get_width()
+                SCREEN_HEIGHT = pygame.display.get_surface().get_height()
+                for i in Rect.all_grids():
+                    Rect.all_grids().remove(i)
                 self.background.dead()
+                self.screen.blit(self.background.text, (SCREEN_WIDTH/2-self.background.textRect.width/2, SCREEN_HEIGHT/2-self.background.textRect.height/2))
+                self.bar.color = "beige"
             self.clock.tick(165)
             pygame.display.flip()
         pygame.quit()

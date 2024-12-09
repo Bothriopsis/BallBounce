@@ -4,6 +4,7 @@ from gameObjects.ball import bounciBall
 from gameObjects.grid import Grid
 from gameObjects.grid import Rect
 from gameObjects.background import Background
+import time
 
 class Game:
     pygame.init()
@@ -23,10 +24,10 @@ class Game:
         self.won = False
         self.loose = False
         while self.game:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.game = False
             keys = pygame.key.get_pressed()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or keys[pygame.K_ESCAPE]:
+                    self.game = False
             if keys[pygame.K_LEFT] or keys[pygame.K_a]:
                 self.bar.move(-10)
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:

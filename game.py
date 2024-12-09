@@ -40,9 +40,8 @@ class Game:
             for i in Rect.all_grids():
                 if i != None:
                     if i.colliderect(self.ball.rect):
-                        print(Rect.all_grids())
                         # Determine collision side with tolerance
-                        tolerance = 2
+                        tolerance = 5
                         if abs(i.top - self.ball.rect.bottom) <= tolerance or abs(self.ball.rect.top - i.bottom) <= tolerance:
                             self.ball.dy = -self.ball.dy  # Change vertical direction
                         if abs(i.left - self.ball.rect.right) <= tolerance or abs(self.ball.rect.right - i.left) <= tolerance:

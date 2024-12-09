@@ -20,22 +20,22 @@ class Game:
     
     def run(self):
         while self.game:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.game = False
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_LEFT]:
-                self.bar.move(-10)
-            if keys[pygame.K_RIGHT]:
-                self.bar.move(10)
-            self.ball.move()
-            self.background.draw(self.screen)
-            self.bar.draw(self.screen)
-            self.ball.draw(self.screen)
-            self.ball.collide()
-            self.grid.draw(self.screen)
-            pygame.display.flip()
-            self.clock.tick(60)
-            if self.background.collide(self.ball):
-                self.game = False
+            if not self.background.collide(self.ball):
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.game = False
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_LEFT]:
+                    self.bar.move(-10)
+                if keys[pygame.K_RIGHT]:
+                    self.bar.move(10)
+                self.ball.move()
+                self.background.draw(self.screen)
+                self.bar.draw(self.screen)
+                self.ball.draw(self.screen)
+                self.ball.collide(self.bar)
+                self.grid.draw(self.screen)
+                pygame.display.flip()
+                self.clock.tick(165)
+            
         pygame.quit()

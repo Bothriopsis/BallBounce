@@ -9,7 +9,7 @@ class Background:
 
     def collide(self, player):
         SCREEN_HEIGHT = pygame.display.get_surface().get_height()
-        if player.rect.y >= SCREEN_HEIGHT:
+        if player.position[1] >= SCREEN_HEIGHT:
             return True
     
     def dead(self):

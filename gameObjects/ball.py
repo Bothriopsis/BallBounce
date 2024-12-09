@@ -19,11 +19,14 @@ class bounciBall:
         self.position[0] += self.dx
         self.position[1] += self.dy
 
-    def collide(self):
+    def collide(self, bar):
         SCREEN_WIDTH = pygame.display.Info().current_w
         SCREEN_HEIGHT = pygame.display.Info().current_h
-        if self.position[0] <= 0 or self.position[0] >= SCREEN_WIDTH:
+        if self.position[0] <= 0 or self.position[0] >= SCREEN_WIDTH - SCREEN_WIDTH/50:
             self.dx = -self.dx
         if self.position[1] <= 0:
             self.dy = -self.dy
+        if self.rect.colliderect(bar.rect):
+            self.dy = -self.dy
+
 

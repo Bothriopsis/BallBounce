@@ -20,6 +20,11 @@ class Grid(Rect):
         for i in range(20):
             for j in range(10):
                 self.grid.append(super().__init__(int(i), int(j)))
+
+    def exist():
+        for g in self.grid:
+            super().draw(g)
+            
     
     def canCollide(self, other):
         for i in self.grid:

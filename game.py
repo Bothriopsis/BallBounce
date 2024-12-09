@@ -32,6 +32,7 @@ class Game:
             self.background.draw(self.screen)
             self.bar.draw(self.screen)
             self.ball.draw(self.screen)
+            self.ball.collide()
             self.grid.draw(self.screen)
             pygame.display.flip()
             self.clock.tick(60)

@@ -9,22 +9,24 @@ class bounciBall:
         self.color = "purple"
         self.dx = random.randint(50,100)/50 # Random velocity on x-Achsis
         self.dy = random.randint(-100,-50)/50 # Rnadom velocitiy on y-Achsis in positiv Direction towards the grid
-        self.game = True
+        self.dead = False
 
     def draw(self, screen):
         SCREEN_WIDTH = pygame.display.Info().current_w
-        SCREEN_HEIGHT = pygame.display.Info().current_h
         self.rect = pygame.Rect(self.position[0], self.position[1], SCREEN_WIDTH/50, SCREEN_WIDTH/50)
         pygame.draw.ellipse(screen, self.color, self.rect)
 
     def move(self):
-        SCREEN_WIDTH = pygame.display.Info().current_w
-        SCREEN_HEIGHT = pygame.display.Info().current_h
         self.position[0] += self.dx
         self.position[1] += self.dy
+
+    def collide(self):
+        SCREEN_WIDTH = pygame.display.Info().current_w
+        SCREEN_HEIGHT = pygame.display.Info().current_h
         if self.position[0] <= 0 or self.position[0] >= SCREEN_WIDTH:
             self.dx = -self.dx
         if self.position[1] <= 0:
             self.dy = -self.dy
         if self.position[1] > SCREEN_HEIGHT:
-            self.game = False
+            self.dead = True
+

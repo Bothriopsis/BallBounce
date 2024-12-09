@@ -1,7 +1,7 @@
 import pygame
 
 class Rect:
-    __all = []
+    all = []
     def __init__(self, x, y):
         SCREEN_WIDTH = pygame.display.Info().current_w
         SCREEN_HEIGHT = pygame.display.Info().current_h
@@ -13,12 +13,12 @@ class Rect:
     def make(self, screen):
         SCREEN_WIDTH = pygame.display.Info().current_w
         self.rect = pygame.Rect(self.position[0], self.position[1], 0.9*(SCREEN_WIDTH/30), 0.9*(SCREEN_WIDTH/30))
-        Rect._all.append(self.rect)
+        Rect.all.append(self.rect)
         pygame.draw.rect(screen, self.color, self.rect)
 
     @classmethod
     def all_grids(cls):
-        return Rect._all
+        return Rect.all
 
 class Grid(Rect):
     def __init__(self, screen):

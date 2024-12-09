@@ -1,5 +1,6 @@
 import pygame
 from gameObjects.moving import movingBar
+from gameObjects.ball import bounciBall
 
 class Game:
     pygame.init()
@@ -9,4 +10,5 @@ class Game:
     clock = pygame.time.Clock()
 
     bar = movingBar()
+    ball = bounciBall()
 

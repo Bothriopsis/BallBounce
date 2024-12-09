@@ -40,6 +40,14 @@ class Game:
             for i in Rect.all_grids():
                 if i.colliderect(self.ball.rect):
                     Rect.all_grids().remove(i)
+                    
+                    # Determine collision side with tolerance
+                    tolerance = 5
+                    if abs(i.top - self.ball.rect.bottom) <= tolerance or abs(self.ball.rect.top - i.bottom) <= tolerance:
+                        self.ball.dy = -self.ball.dy  # Change vertical direction
+                    if abs(i.left - self.ball.rect.right) <= tolerance or abs(self.ball.rect.right - i.left) <= tolerance:
+                        self.ball.dx = -self.ball.dx  # Change horizontal direction
+
                 pygame.draw.rect(self.screen, "grey", i)
             if len(Rect.all_grids()) == 0 and self.loose == False:
                 self.won = True

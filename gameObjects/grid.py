@@ -19,8 +19,7 @@ class Grid(Rect):
         self.grid = []
         for i in range(20):
             for j in range(10):
-                rect = Rect(i,j)
-                self.grid.append(rect.make(screen, self.color, rect))
+                super().__init__(i,j)
 
     def exist(self, screen):
         for g in self.grid:

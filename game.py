@@ -13,7 +13,7 @@ class Game:
 
     bar = movingBar()
     ball = bounciBall()
-    grid = Grid()
+    grid = Grid(screen)
     background = Background()
     def __init__(self):
         self.game = True

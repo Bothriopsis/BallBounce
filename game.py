@@ -38,17 +38,21 @@ class Game:
             self.ball.draw(self.screen)
             self.ball.collide(self.bar)
             for i in Rect.all_grids():
-                if i.colliderect(self.ball.rect):
-                    Rect.all_grids().remove(i)
+                if i != None:
+                    if i.colliderect(self.ball.rect):
+                        print(Rect.all_grids())
+                        # Determine collision side with tolerance
+                        tolerance = 2
+                        if abs(i.top - self.ball.rect.bottom) <= tolerance or abs(self.ball.rect.top - i.bottom) <= tolerance:
+                            self.ball.dy = -self.ball.dy  # Change vertical direction
+                        if abs(i.left - self.ball.rect.right) <= tolerance or abs(self.ball.rect.right - i.left) <= tolerance:
+                            self.ball.dx = -self.ball.dx  # Change horizontal direction
+                        index = Rect.all_grids().index(i)
+                        Rect.all_grids()[index] = None
                     
-                    # Determine collision side with tolerance
-                    tolerance = 5
-                    if abs(i.top - self.ball.rect.bottom) <= tolerance or abs(self.ball.rect.top - i.bottom) <= tolerance:
-                        self.ball.dy = -self.ball.dy  # Change vertical direction
-                    if abs(i.left - self.ball.rect.right) <= tolerance or abs(self.ball.rect.right - i.left) <= tolerance:
-                        self.ball.dx = -self.ball.dx  # Change horizontal direction
-
-                pygame.draw.rect(self.screen, "grey", i)
+            for i in Rect.all_grids():    
+                if i != None:
+                    pygame.draw.rect(self.screen, "grey", i)
             if len(Rect.all_grids()) == 0 and self.loose == False:
                 self.won = True
             if self.won == True:

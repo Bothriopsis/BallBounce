@@ -37,29 +37,31 @@ class Game:
             self.ball.draw(self.screen)
             self.ball.collide(self.bar)
             for i in Rect.all_grids():
-                if i != None:
-                    if i.colliderect(self.ball.rect):
-                        # Determine collision side with tolerance
-                        tolerance = 5
-                        if abs(i.top - self.ball.rect.bottom) <= tolerance or abs(self.ball.rect.top - i.bottom) <= tolerance:
-                            self.ball.dy = -self.ball.dy  # Change vertical direction
-                        if abs(i.left - self.ball.rect.right) <= tolerance or abs(self.ball.rect.right - i.left) <= tolerance:
-                            self.ball.dx = -self.ball.dx  # Change horizontal direction
-                        index = Rect.all_grids().index(i)
-                        Rect.all_grids()[index] = None
+                if i is not None and i.colliderect(self.ball.rect):
+                    # Determine collision side
+                    if self.ball.rect.bottom >= i.top and self.ball.rect.top < i.top:
+                        self.ball.dy = -self.ball.dy  # Change vertical direction
+                    elif self.ball.rect.top <= i.bottom and self.ball.rect.bottom > i.bottom:
+                        self.ball.dy = -self.ball.dy  # Change vertical direction
+                    elif self.ball.rect.right >= i.left and self.ball.rect.left < i.left:
+                        self.ball.dx = -self.ball.dx  # Change horizontal direction
+                    elif self.ball.rect.left <= i.right and self.ball.rect.right > i.right:
+                        self.ball.dx = -self.ball.dx  # Change horizontal direction
+                    index = Rect.all_grids().index(i)
+                    Rect.all_grids()[index] = None
                     
-            for i in Rect.all_grids():    
-                if i != None:
+            for i in Rect.all_grids():
+                if i is not None:
                     pygame.draw.rect(self.screen, "grey", i)
-            if len(Rect.all_grids()) == 0 and self.loose == False:
+            if len(Rect.all_grids()) == 0 and not self.loose:
                 self.won = True
-            if self.won == True:
+            if self.won:
                 SCREEN_WIDTH = pygame.display.get_surface().get_width()
                 SCREEN_HEIGHT = pygame.display.get_surface().get_height()
                 self.background.winner()
                 self.screen.blit(self.background.text, (SCREEN_WIDTH/2-self.background.textRect.width/2, SCREEN_HEIGHT/2-self.background.textRect.height/2))
                 self.bar.color = "beige"
-            if self.background.collide(self.ball) and self.won == False:
+            if self.background.collide(self.ball) and not self.won:
                 self.loose = True
                 SCREEN_WIDTH = pygame.display.get_surface().get_width()
                 SCREEN_HEIGHT = pygame.display.get_surface().get_height()

@@ -5,7 +5,7 @@ class movingBar:
         SCREEN_WIDTH = pygame.display.Info().current_w
         SCREEN_HEIGHT = pygame.display.Info().current_h
         self.position = [(SCREEN_WIDTH/2-SCREEN_WIDTH/16), (9*(SCREEN_HEIGHT/10))]
-        self.color = "darkblue"
+        self.color = pygame.Color("#534666")
 
     def draw(self, screen):
         SCREEN_WIDTH = pygame.display.Info().current_w

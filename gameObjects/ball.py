@@ -6,7 +6,7 @@ class bounciBall:
         SCREEN_WIDTH = pygame.display.Info().current_w
         SCREEN_HEIGHT = pygame.display.Info().current_h
         self.position = [random.randint(int(SCREEN_WIDTH/50),int(49*SCREEN_WIDTH/50)),random.randint(int(SCREEN_HEIGHT*5/6),int(SCREEN_HEIGHT-SCREEN_WIDTH/50))]
-        self.color = "purple"
+        self.color = pygame.Color("#EEB462")
         self.dx = random.randint(50,100)/50 # Random velocity on x-Achsis
         self.dy = random.randint(-100,-50)/50 # Rnadom velocitiy on y-Achsis in positiv Direction towards the grid
 

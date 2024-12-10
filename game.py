@@ -31,7 +31,6 @@ class Game:
                 self.bar.move(-10)
             if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
                 self.bar.move(10)
-            self.ball.move()
             self.background.draw(self.screen)
             self.bar.draw(self.screen)
             self.ball.draw(self.screen)
@@ -49,6 +48,7 @@ class Game:
                         self.ball.dx = -self.ball.dx  # Change horizontal direction
                     index = Rect.all_grids().index(i)
                     Rect.all_grids()[index] = None
+            self.ball.move()
                     
             for i in Rect.all_grids():
                 if i is not None:

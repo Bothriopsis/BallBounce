@@ -4,7 +4,6 @@ from gameObjects.ball import bounciBall
 from gameObjects.grid import Grid
 from gameObjects.grid import Rect
 from gameObjects.background import Background
-import time
 
 class Game:
     pygame.init()

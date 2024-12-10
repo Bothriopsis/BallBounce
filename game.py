@@ -39,7 +39,7 @@ class Game:
                 if i is not None and i.colliderect(self.ball.rect):
                     # Determine collision side
                     if self.ball.rect.bottom >= i.top and self.ball.rect.top < i.top:
-                        self.ball.dy = -self.ball.dy  # Change vertical direction
+                        self.ball.dy = -self.ball.dy  # Change vertical 
                     elif self.ball.rect.top <= i.bottom and self.ball.rect.bottom > i.bottom:
                         self.ball.dy = -self.ball.dy  # Change vertical direction
                     elif self.ball.rect.right >= i.left and self.ball.rect.left < i.left:
@@ -48,7 +48,7 @@ class Game:
                         self.ball.dx = -self.ball.dx  # Change horizontal direction
                     index = Rect.all_grids().index(i)
                     Rect.all_grids()[index] = None
-            self.ball.move()
+                    break
                     
             for i in Rect.all_grids():
                 if i is not None:
@@ -70,6 +70,7 @@ class Game:
                 self.background.dead()
                 self.screen.blit(self.background.text, (SCREEN_WIDTH/2-self.background.textRect.width/2, SCREEN_HEIGHT/2-self.background.textRect.height/2))
                 self.bar.color = "beige"
+            self.ball.move()
             self.clock.tick(165)
             pygame.display.flip()
         pygame.quit()
